@@ -1,0 +1,18 @@
+name: 'aws-eco-runner'
+description: 'AWS Eco Runner is a solution designed to optimize the cost of using GitHub Actions runners on AWS. By automating the activation and deactivation of the instance, it ensures that you only incur costs when necessary'
+author: 'NodeSource'
+
+runs:
+  using: 'node20'
+  main: '.github/workflows/action.yml'
+
+inputs:
+  instance_id:
+    description: 'ID of the EC2 instance to start OR the name of the scaling group to scale down'
+    required: true
+  action:
+    description: 'Define if I want to start or stop the runner'
+    required: true
+  aws_default_region:
+    description: 'AWS region to use'
+    required: true
