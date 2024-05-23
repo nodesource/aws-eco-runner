@@ -1,11 +1,12 @@
 import { EC2Client, StopInstancesCommand, StartInstancesCommand } from "@aws-sdk/client-ec2";
+import core from "@actions/core";
 import { sleep, consoleTable } from "./utils.js";
 
 
 const client = new EC2Client();
 
 export async function start(InstanceIds) {
-
+try {
     const command = new StartInstancesCommand({InstanceIds: InstanceIds})
     let response
     response = await client.send(command);
@@ -17,9 +18,13 @@ export async function start(InstanceIds) {
     response = await client.send(command);
     consoleTable(response.StartingInstances)
     return response;
+} catch (err) {
+core.setFailed(err);
+}
 }
 
 export async function stop(InstanceIds) {
+  try{
   const command = new StopInstancesCommand({InstanceIds: InstanceIds})
   let response
   response = await client.send(command);
@@ -30,4 +35,7 @@ export async function stop(InstanceIds) {
   response = await client.send(command);
   consoleTable(response.StoppingInstances)
   return response;
+  } catch (err) {
+    core.setFailed(err);
+  }
 }
