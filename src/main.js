@@ -5,7 +5,7 @@ export async function run() {
   try {
     //console.log(await start(["i-03f65f60fa8de5492", "i-048cc57d9aba24d87"]));
     const instances_id = JSON.parse(core.getInput('instances_id', {required: true}))
-    const action = core.getInput('action', {required: true})
+    const action = (core.getInput('action', {required: true})).toLowerCase
 
     if (action === "start") {
       await start(instances_id);
@@ -16,6 +16,8 @@ export async function run() {
       await stop(instances_id);
       return
     }
+
+    core.setFailed("Invalid action. Please use 'start' or 'stop'");
 
   } catch (err) {
     core.setFailed(err);

@@ -43,9 +43,10 @@ This is an example IAM policy, you must adapt it to yourt needs.
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Sid": "VisualEditor0",
       "Effect": "Allow",
       "Action": ["ec2:StartInstances", "ec2:StopInstances"],
-      "Resource": "arn:aws:ec2:*:*:instance/$INSTANCE_ID"
+      "Resource": ["arn:aws:ec2:${REGION}:${ACCOUNT_ID}:instance/${INSTANCE_ID}"]
     }
   ]
 }

@@ -1,0 +1,21 @@
+on: [push]
+
+jobs:
+  test_action_job:
+    runs-on: ubuntu-latest
+    name: Run AWS Eco Runner
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Execute Action Start
+        uses: ./
+        with:
+          instances_id: '["i-048cc57d9aba24d87"]'
+          action: "start"
+
+      - name: Execute Action Stop
+        uses: ./
+        with:
+          instances_id: '["i-048cc57d9aba24d87"]'
+          action: "STOP"
