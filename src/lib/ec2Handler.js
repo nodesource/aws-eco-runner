@@ -7,6 +7,7 @@ const client = new EC2Client();
 
 export async function start(InstanceIds) {
 try {
+    core.info(`Starting instances: ${InstanceIds}`)
     const command = new StartInstancesCommand({InstanceIds: InstanceIds})
     let response
     response = await client.send(command);
@@ -25,6 +26,7 @@ core.setFailed(err);
 
 export async function stop(InstanceIds) {
   try{
+    core.info(`Stopping instances: ${InstanceIds}`)
   const command = new StopInstancesCommand({InstanceIds: InstanceIds})
   let response
   response = await client.send(command);
