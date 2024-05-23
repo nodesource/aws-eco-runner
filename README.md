@@ -21,7 +21,7 @@ The runner is kept active every 2 days (to not be removed as a Github Runner) an
       - name: Start Runner
         uses: nodesource/aws-eco-runner@v1
         with:
-          instance_id: $INSTANCE_ID
+          instance_id: '["i-01", "i-02"]'
           action: 'start'
           aws_default_region: 'us-west-2'
 
@@ -30,7 +30,23 @@ The runner is kept active every 2 days (to not be removed as a Github Runner) an
       - name: Stop Runner
         uses: nodesource/aws-eco-runner@v1
         with:
-          instance_id: $INSTANCE_ID
+          instance_id: '["i-01"]'
           action: 'stop'
           aws_default_region: 'us-west-2'
+```
+
+This action requires a minimal permission to start and stop the instance:
+This is an example IAM policy, you must adapt it to yourt needs.
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["ec2:StartInstances", "ec2:StopInstances"],
+      "Resource": "arn:aws:ec2:*:*:instance/$INSTANCE_ID"
+    }
+  ]
+}
 ```
