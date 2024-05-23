@@ -1,4 +1,7 @@
-export function consoleTable(data){
-  data = data.reduce((instance, {InstanceId, ...data}) => { instance[InstanceId] = data; return instance}, {})
-  console.table(data)
+export function consoleTable(data) {
+  const instances = data.reduce((instance, { InstanceId, ...data }) => {
+    instance[InstanceId] = data;
+    return instance;
+  }, {});
+  console.table(instances);
 }

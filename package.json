@@ -5,7 +5,12 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "ncc build -o dist/ src/main.js && rm -rf dist/package.json"
+    "build": "ncc build -o dist/ src/main.js && rm -rf dist/package.json",
+    "format-check": "biome format ./",
+    "format": "biome format --write ./",
+    "lint": "biome lint ./",
+    "lint-fix": "biome lint --apply ./",
+    "test": "echo \"Tests TODO\" && exit 0"
   },
   "author": "",
   "license": "MIT",
@@ -15,6 +20,7 @@
     "@aws-sdk/client-ec2": "^3.582.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.7.3",
     "@vercel/ncc": "^0.38.1"
   }
 }
