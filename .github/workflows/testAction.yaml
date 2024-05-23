@@ -1,4 +1,7 @@
-on: [push]
+on:
+  push:
+    branches:
+      - migrateAction
 
 jobs:
   test_action_job:
@@ -7,6 +10,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: us-west-2
+          role-to-assume: arn:aws:iam::800406105498:role/aws-eco-runner
 
       - name: Execute Action Start
         uses: ./
