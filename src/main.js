@@ -17,7 +17,6 @@ export async function run() {
       return
     }
 
-    core.setFailed("Invalid action. Please use 'start' or 'stop'");
 
   } catch (err) {
     core.setFailed(err);
