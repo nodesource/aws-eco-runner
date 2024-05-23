@@ -36,7 +36,7 @@ The runner is kept active every 2 days (to not be removed as a Github Runner) an
 ```
 
 This action requires a minimal permission to start and stop the instance:
-This is an example IAM policy, you must adapt it to yourt needs.
+This is an example IAM policy, you must adapt it to your needs.
 
 ```json
 {
