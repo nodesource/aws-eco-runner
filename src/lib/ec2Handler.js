@@ -1,7 +1,7 @@
 import { EC2Client, StopInstancesCommand, StartInstancesCommand } from "@aws-sdk/client-ec2";
 import core from "@actions/core";
-import { sleep, consoleTable } from "./utils.js";
-
+import { consoleTable } from "./utils.js";
+import { setTimeout as sleep } from "timers/promises";
 
 const client = new EC2Client();
 
