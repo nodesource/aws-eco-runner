@@ -1,29 +1,21 @@
-name: 'aws-eco-runner'
-description: 'AWS Eco Runner is a solution designed to optimize the cost of using GitHub Actions runners'
-author: 'NodeSource'
+name: "aws-eco-runner"
+description: "AWS Eco Runner is a solution designed to optimize the cost of using GitHub Actions runners"
+author: "NodeSource"
 
 inputs:
-  instance_id:
-    description: 'ID of the EC2 instance to start OR the name of the scaling group to scale down'
+  instances_id:
+    description: "Array with ID of the EC2 instance to start OR stop"
     required: true
   action:
-    description: 'Define if I want to start or stop the runner'
+    description: "Define if I want to start or stop the runner"
     required: true
-  aws_default_region:
-    description: 'AWS region to use'
-    required: true
+    default: "start"
 
 runs:
-  using: "composite"
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-
-    - name: Start/Stop Runner Instance
-      shell: bash
-      run: |
-        ${GITHUB_ACTION_PATH}/instance_start_stop.bash --instance-id=${{ inputs.instance_id }} --action=${{ inputs.action }}
+  using: "node20"
+  main: "dist/index.js"
+  post-if: success()
 
 branding:
-  icon: 'award'
-  color: 'green'
+  icon: "award"
+  color: "green"
