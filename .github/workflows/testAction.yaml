@@ -31,4 +31,4 @@ jobs:
         uses: ./
         with:
           instances_id: '["i-048cc57d9aba24d87"]'
-          action: "STOP"
+          action: "stop"
